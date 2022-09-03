@@ -57,8 +57,14 @@
 
    populateList();
 
+   function deosNotHaveWhiteSpace(s){
+    let stingWithoutSpace= s.trim();
+    return stingWithoutSpace.length >0;      
+
+   }
+
    function addTask(){
-    if(inputElement.value){
+    if(inputElement.value && deosNotHaveWhiteSpace(inputElement.value)){
         taskList.push(inputElement.value)
         populateList();
 
