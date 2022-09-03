@@ -41,10 +41,31 @@ body{
 }
 .list{
     flex-grow: 1;
-    padding: 1em;  
+    padding: 3em;  
+    overflow-y: scroll;
    
     
     
+}
+.list ul{
+    list-style-type: none;
+}
+.list ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.delet{
+    cursor: pointer;
+}
+.list ul li i{
+    cursor: pointer;
+    color: #ef5350;
+    padding: 1em;
+}
+.list ul li i:hover{
+    background:#f1f1f1;
 }
 .add-task{
     padding: 2em;

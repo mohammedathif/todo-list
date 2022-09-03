@@ -3,12 +3,24 @@
    let listElement = document.querySelector('ul');
    let totalTaskElement = document.querySelector("#total-task");
 
-   let tasklist =[
+   let taskList =[
     'buy groceries',
     'car sercice'
-   ]
-   function populatelist(){
-    tasklist.forEach(function(item){
+   ];
+
+   function deleteItem(e){
+    let task = e.target.parentElemet.previousElementSibling.innerHTML;
+    let index = taskList.indexOf(task);
+    if(index !== -1){
+        taskList.splice(index, 1);
+    }
+   populateList();
+
+   }
+
+   function populateList(){
+    listElement.innerHTML = '';
+    taskList.forEach(function(item){
         let newItem = document.createElement('li');
 
 
@@ -22,8 +34,11 @@
 
         let anchorElement = document.createElement('a');
         anchorElement.classList.add('delete');
-        anchorElement.innerHTML = '<i class="fas fa-trach-alt"></i>';
+        anchorElement.innerHTML = '<i class="fas fa-trash-alt"></i>';
         newItem.appendChild(anchorElement);
+        
+
+        anchorElement.addEventListener('click',(e)=> deleteItem(e));
 
         //add LI to UL
         listElement.appendChild(newItem);
@@ -33,6 +48,25 @@
 
 
     })
+    totalTaskElement.innerHTML = taskList.length;
+    inputElement.value = '';
+
+
+
    }
 
-   populatelist();
+   populateList();
+
+   function addTask(){
+    if(inputElement.value){
+        taskList.push(inputElement.value)
+        populateList();
+
+    }
+
+   }
+
+   formElement.addEventListener('submit',function(e){
+    e.preventDefault();
+    addTask();
+   });
